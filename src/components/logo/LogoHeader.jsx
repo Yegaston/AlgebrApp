@@ -4,10 +4,8 @@ import "../../styles.css";
 export default function LogoHeader() {
   return (
     <div className="container">
-      <div className="row mt-5 d-flex">
-        <div className="col s6 center">
-          <img src={logoSvg} alt="Logo" />
-        </div>
+      <div className="justify-content-center d-flex mt-10 p-10">
+        <img src={logoSvg} alt="Logo" />
       </div>
     </div>
   );

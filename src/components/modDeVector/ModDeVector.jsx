@@ -1,22 +1,17 @@
 import React, { Component } from "react";
 import "../../styles.css";
+import { thisExpression } from "@babel/types";
 
-export default class ProdEscalar extends Component {
+export default class ModDeVector extends Component {
   constructor() {
     super();
 
     this.state = {
-      vector1: "",
-      vector2: "",
+      vector: [],
       rta: 0
     };
     this.handleChange = this.handleChange.bind(this);
-    this.calcularProdEscalar = this.calcularProdEscalar.bind(this);
-    this.craps = this.craps.bind(this);
-  }
-
-  craps(e) {
-    console.log("none");
+    this.CalcularModulo = this.CalcularModulo.bind(this);
   }
 
   handleChange(e) {
@@ -27,56 +22,44 @@ export default class ProdEscalar extends Component {
     });
   }
 
-  calcularProdEscalar(e) {
-    e.preventDefault();
+  CalcularModulo() {
+    console.log("pornm");
 
-    const v1 = [];
-    const v2 = [];
+    const v = [];
     let rta = 0;
+    let t = 0;
 
-    let aux = this.state.vector1.split(",");
+    let aux = this.state.vector.split(",");
     aux.forEach(a => {
-      v1.push(Number(a));
+      v.push(Number(a));
     });
 
-    aux = this.state.vector2.split(",");
-    aux.forEach(a => {
-      v2.push(Number(a));
-    });
-
-    for (let i = 0; i < v1.length; i++) {
-      rta += v1[i] * v2[i];
+    for (let i = 0; i < v.length; i++) {
+      t += Math.pow(v[i], 2);
     }
+
+    rta = Math.sqrt(t);
+
     this.setState({
-      rta
-    });
-    console.log(this.state.rta);
+        rta
+    })
   }
 
   render() {
     return (
       <div>
+        <h4>Modulo de un vector</h4>
         <div className="row">
-          <h4>Producto Escalar</h4>
           <div className="input-field col m4">
             <input
-              placeholder="Vector1 = (x, y, z)"
-              name="vector1"
+              placeholder="Vector = (x, y, z)"
+              name="vector"
               type="text"
               className="validate"
               onChange={this.handleChange}
             />
           </div>
-          <div className="input-field col m4">
-            <input
-              placeholder="Vector2 = (x, y, z)"
-              name="vector2"
-              type="text"
-              className="validate"
-              onChange={this.handleChange}
-            />
-          </div>
-          <div className="input-field col m4">
+          <div className="input-field col m2">
             <input
               value={this.state.rta}
               placeholder={this.state.rta}
@@ -90,7 +73,7 @@ export default class ProdEscalar extends Component {
         </div>
         <button
           className="waves-effect waves-light btn-large"
-          onClick={this.calcularProdEscalar}
+          onClick={this.CalcularModulo}
         >
           Calcular
         </button>
